@@ -130,17 +130,28 @@ edmx:DataServices m:DataServiceVersion="3.0" m:MaxDataServiceVersion="3.0"
 "%windir%\Microsoft.NET\Framework\v3.5\DataSvcUtil.exe" /dataservicecollection /in:northwind-data-service.edmx /out:NorthwindDataService3.cs
 ```
 
-Какая возникла ошибка?
+Утилита вернет ошибку:
+```
+error 7025: Option 'DataServiceCollection' can not be specified when 'Version' is set to the default value of '1.0'.
+```
 
-4. Узнайте, какие версии поддерживает DataSvcUtil:
+Ошибка возникла из-за того, что при вызове утилиты не была указана версия протокола.
+
+4. Узнайте, какие версии сервиса поддерживает DataSvcUtil:
 
 ```
 "%windir%\Microsoft.NET\Framework\v3.5\DataSvcUtil.exe" /?
 ```
 
-Используйте утилиту DataSvcUtil снова, но на этот раз укажите номер версии 2.0. Какая возникла ошибка?
+Используйте утилиту DataSvcUtil снова, но на этот раз укажите номер версии сервиса 2.0. Утилита вернет ошибку:
 
-(Несмотря на то, что сервис Northwind OData реализует версию протокола 3.0, он отдает метаданные в формате версии 1.0. Поэтому, чтобы продемонстрировать ограничения версии утилиты DataSvcUtil, потребовалась замена версии в пункте 2.)
+```
+error 7001: The element 'DataService' has an attribute 'DataServiceVersion' with an unrecognized version '3.0'.
+```
+
+Ошибка возникла из-за того, что эта версия утилиты поддерживает только версии протоколов 1.0 и 2.0.
+
+(Несмотря на то, что сервис Northwind OData реализует версию протокола 3.0, он отдает метаданные в формате версии 1.0. Поэтому, чтобы продемонстрировать ограничения утилиты DataSvcUtil из набора утилит .NET Framework 3.5, потребовалась замена версии сервиса в пункте 2 на версию 3.)
 
 5. Установите [WCF Data Services 5.6.3](https://www.microsoft.com/en-us/download/details.aspx?id=45308), найдите DataSvcUtil на диске (C:\Program Files (x86)\Microsoft WCF Data Services). Узнайте, какие версии формата метаданных поддерживает эта версия утилиты.
 6. Используйте DataSvcUtil версии 5.6.3 с указанием версии метаданных 3.0. После этого на диске должен появиться файл _NorthwindDataService.cs_.
@@ -170,7 +181,7 @@ Console.WriteLine("{0} customers in the service found.", customers.Length);
 8. Найдите базовый класс, от которого унаследован _NorthwindModel.NorthwindEntities_. 
     * В какой сборке находится базовый класс?
     * По какому пути лежит эта сборка?
-    * Какая версия у нее версия?
+    * Какая версия у сборки, в которой находится базовый класс?
     * Найдите документацию для этого класса на портале [docs.microsoft.com](https://docs.microsoft.com/).
 
 Базовый клиент готов.
@@ -261,7 +272,7 @@ NorthwindModel.NorthwindEntities entities = new NorthwindModel.NorthwindEntities
 var taskFactory = new TaskFactory<IEnumerable<NorthwindModel.Customer>>();
 var customers = (await taskFactory.FromAsync(entities.Customers.BeginExecute(null, null), (iar) => // breakpoint #2.1
 {
-	entities.Customers.EndExecute(iar); // breakpoint #2.2
+	return entities.Customers.EndExecute(iar); // breakpoint #2.2
 })).ToArray();
 Console.WriteLine("{0} customers in the service found.", customers.Length);
 Console.ReadLine(); // breakpoint #2.3
@@ -293,70 +304,6 @@ TODO
 https://www.restapitutorial.com/index.html
 https://restfulapi.net/
 
-
-### Northwind Data Service
-
-В качестве внешнего сервиса будет использоваться [Northwind OData Test Service](https://services.odata.org/V2/Northwind/Northwind.svc/).
-
-Пример использования сервиса через браузер:
-
-1. Перейти на [страницу сервиса](https://services.odata.org/V2/Northwind/Northwind.svc/).
-
-```
-https://services.odata.org/V2/Northwind/Northwind.svc/
-```
-
-2. Чтобы посмотреть список всех сущностей Customer - добавить "/Customers"
-
-```
-https://services.odata.org/V2/Northwind/Northwind.svc/Customers
-```
-
-3. Чтобы найти сущность Customer, уникальный идентификатор которого ALFKI.
-
-```
-https://services.odata.org/V2/Northwind/Northwind.svc/Customers('ALFKI')
-```
-
-4. 
-
-https://services.odata.org/V2/Northwind/Northwind.svc/Customers('ALFKI')/Orders
-
 ![Northwind OData Service](images/northwind-odata-service.png)
 
-
-
 ## Ссылки
-
-### Northwind
-
-http://www.wilsonmar.com/northwind.htm
-
-
-* [Northwind and pubs sample databases for Microsoft SQL Server](https://github.com/microsoft/sql-server-samples/tree/master/samples/databases/northwind-pubs)
-* [Database agnostic DB Script to create Northwind Data Model](https://github.com/mrin9/northwind)
-
-
-http://northwind.servicestack.net/
-https://www.hanselman.com/blog/ExploringServiceStacksSimpleAndFastWebServicesOnNETCore.aspx
-
-
-https://dzone.com/articles/migrating-a-northwind-database-to-nosql-database
-
-
-https://dzone.com/articles/collection-sql-server-sample-databases
-
-sql tutorial
-https://www.zentut.com/sql-tutorial/%20-
-
-4. Найдите в схеме базы данных примеры (если они есть) 1NF, 2NF, 3NF, BCNF, 4NF, 5NF.
-
-* Гудов, Завозкин, Пфайф. Учебное пособие ["Базы данных"](http://unesco.kemsu.ru/study_work/method/DB/book/index.html)
-* Сабитов, Пирогов. Учебный курс ["Введение в СУБД"](https://cmd.inp.nsk.su/~pirogov/DB/slides)
-
-
-OLAP
-http://lib.kstu.kz:8300/tb/books/2016/IVS/Sistemy%20avtomatizirovannyh%20eksperimentov/%D0%9A%D0%BE%D0%BD%D1%82%D1%80%D0%BE%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F%20%D1%80%D0%B0%D0%B1%D0%BE%D1%82%D0%B0/kontr2.htm
-
-Trader, powerapps
-https://powerapps.microsoft.com/en-us/blog/northwind-traders-relational-data-sample/
