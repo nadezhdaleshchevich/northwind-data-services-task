@@ -12,6 +12,8 @@
 
 ### Создание базового приложения ASP.NET Core
 
+![Overview](images/task-02-basic-app.png)
+
 1. Изучите:
 
 * [Create web APIs with ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/web-api/?view=aspnetcore-2.2)
@@ -38,7 +40,7 @@ dotnet run --project NorthwindWebApiApp
 * [IOrderService.cs](task02/northwind-basic-app/NorthwindWebApiApp/Services/IOrderService.cs) и [OrderService.cs](task02/northwind-basic-app/NorthwindWebApiApp/Services/OrderService.cs) в папку Services.
 * Поместите [NorthwindDataService.cs](task02/northwind-basic-app/NorthwindWebApiApp/ExternalServices/NorthwindDataService.cs) (версия 3) в папку External Services.
 
-4. Зарегистрируйте сервис в Startup.cs:
+4. Зарегистрируйте сервис в [Startup.cs](task02/northwind-basic-app/NorthwindWebApiApp/Startup.cs):
 
 ```cs
 public void ConfigureServices(IServiceCollection services)
