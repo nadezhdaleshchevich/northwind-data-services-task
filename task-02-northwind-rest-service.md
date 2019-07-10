@@ -33,10 +33,10 @@ dotnet run --project NorthwindWebApiApp
 
 3. Добавьте в проект файлы:
 
-* [OrdersController](task02\northwind-basic-app\NorthwindWebApiApp\Controllers\OrdersController.cs) в папку Controllers.
-* [BriefOrderModel.cs](task02\northwind-basic-app\NorthwindWebApiApp\Models\BriefOrderModel.cs) и [FullOrderModel.cs](task02\northwind-basic-app\NorthwindWebApiApp\Models\FullOrderModel.cs) в папку Models.
-* [IOrderService.cs](task02\northwind-basic-app\NorthwindWebApiApp\Services\IOrderService.cs) и [OrderService.cs](task02\northwind-basic-app\NorthwindWebApiApp\Services\OrderService.cs) в папку Services.
-* Поместите NorthwindDataService.cs (версия 3) в папку External Services.
+* [OrdersController](task02/northwind-basic-app/NorthwindWebApiApp/Controllers/OrdersController.cs) в папку Controllers.
+* [BriefOrderModel.cs](task02/northwind-basic-app/NorthwindWebApiApp/Models/BriefOrderModel.cs) и [FullOrderModel.cs](task02/northwind-basic-app/NorthwindWebApiApp/Models/FullOrderModel.cs) в папку Models.
+* [IOrderService.cs](task02/northwind-basic-app/NorthwindWebApiApp/Services/IOrderService.cs) и [OrderService.cs](task02/northwind-basic-app/NorthwindWebApiApp/Services/OrderService.cs) в папку Services.
+* Поместите [NorthwindDataService.cs](task02/northwind-basic-app/NorthwindWebApiApp/ExternalServices/NorthwindDataService.cs) (версия 3) в папку External Services.
 
 4. Зарегистрируйте сервис в Startup.cs:
 
