@@ -1,6 +1,6 @@
 # Northwind Data Services
 
-## Задача 2 - Northwind REST Service
+## Задача 2 - Northwind RESTful Service
 
 Цели:
 * Научиться создавать веб-приложения, используя ASP.NET Core.
