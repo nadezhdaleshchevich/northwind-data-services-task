@@ -1,6 +1,6 @@
 # Northwind Data Services
 
-## Задача 2 - Northwind RESTful API
+## Задача 3 - Northwind RESTful API
 
 Цели:
 * Научиться создавать RESTful API.

@@ -40,14 +40,15 @@ dotnet build
 dotnet run --project NorthwindWebApiApp
 ```
 
-2. Добавьте в проект файлы:
+2. Поместите [NorthwindDataService.cs](northwind-basic-app/NorthwindWebApiApp/ExternalServices/NorthwindDataService.cs) (версия 3) в папку NorthwindWebApiApp\ExternalServices.
 
-* [OrdersController](task02/northwind-basic-app/NorthwindWebApiApp/Controllers/OrdersController.cs) в папку Controllers.
-* [BriefOrderModel.cs](task02/northwind-basic-app/NorthwindWebApiApp/Models/BriefOrderModel.cs) и [FullOrderModel.cs](task02/northwind-basic-app/NorthwindWebApiApp/Models/FullOrderModel.cs) в папку Models.
-* [IOrderService.cs](task02/northwind-basic-app/NorthwindWebApiApp/Services/IOrderService.cs) и [OrderService.cs](task02/northwind-basic-app/NorthwindWebApiApp/Services/OrderService.cs) в папку Services.
-* Поместите [NorthwindDataService.cs](task02/northwind-basic-app/NorthwindWebApiApp/ExternalServices/NorthwindDataService.cs) (версия 3) в папку External Services.
+3. Добавьте модели [BriefOrderModel.cs](northwind-basic-app/NorthwindWebApiApp/Models/BriefOrderModel.cs) и [FullOrderModel.cs](northwind-basic-app/NorthwindWebApiApp/Models/FullOrderModel.cs) в папку NorthwindWebApiApp\Models.
 
-3. Зарегистрируйте сервис в [Startup.cs](task02/northwind-basic-app/NorthwindWebApiApp/Startup.cs):
+4. Добавьте интерфейс и реализацию сервиса [IOrderService.cs](northwind-basic-app/NorthwindWebApiApp/Services/IOrderService.cs) и [OrderService.cs](northwind-basic-app/NorthwindWebApiApp/Services/OrderService.cs) в папку NorthwindWebApiApp\Services.
+
+5. Добавьте новый контроллер [OrdersController](northwind-basic-app/NorthwindWebApiApp/Controllers/OrdersController.cs) в папку Controllers.
+
+6. Зарегистрируйте сервис в [Startup.cs](northwind-basic-app/NorthwindWebApiApp/Startup.cs):
 
 ```cs
 public void ConfigureServices(IServiceCollection services)
@@ -57,14 +58,23 @@ public void ConfigureServices(IServiceCollection services)
 }
 ```
 
-4. Запустите и проверьте работоспособность приложения.
+7. Запустите и проверьте работоспособность приложения.
+
+```
+dotnet build
+dotnet run --project NorthwindWebApiApp
+```
 
 
 ### Конфигурация сервиса
 
 #### Материалы для изучения
 
+* [Configuration in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/fundamentals/configuration/)
+
 #### Выполнение
+
+TODO
 
 
 ### Документирование сервиса
@@ -108,37 +118,6 @@ TODO
 
 TODO
 
-
-### Размещение сервиса
-
-* Размещение сервиса на heroku.
-* Размещение сервиса на Azure Web App.
-
-
-### Проектирование CRUD API
-
-#### Материалы для изучения
-
-https://www.restapitutorial.com/index.html
-https://restfulapi.net/
-
-
-#### Выполнение
-
-TODO
-
-
-### Подключение базы данных
-
-#### Материалы для изучения
-
-* PostgreSQL
-* Entity Framework
-
-
-#### Выполнение
-
-TODO
 
 
 ### Использование Automapper
