@@ -12,11 +12,6 @@
 
 ![Overview](../images/task-02-basic-app.png)
 
-| Endpoint             | Http Verb | Status Codes |
-| -------------------- | --------- | ------------ |
-| /api/orders          | GET       | 200, 500     |
-| /api/orders/:orderId | GET       | 200, 500     |
-
 
 #### Материалы для изучения
 
@@ -46,7 +41,33 @@ dotnet run --project NorthwindWebApiApp
 
 4. Добавьте интерфейс и реализацию сервиса [IOrderService.cs](northwind-basic-app/NorthwindWebApiApp/Services/IOrderService.cs) и [OrderService.cs](northwind-basic-app/NorthwindWebApiApp/Services/OrderService.cs) в папку NorthwindWebApiApp\Services.
 
-5. Добавьте новый контроллер [OrdersController](northwind-basic-app/NorthwindWebApiApp/Controllers/OrdersController.cs) в папку Controllers.
+5. Добавьте новый контроллер [OrdersController](northwind-basic-app/NorthwindWebApiApp/Controllers/OrdersController.cs) в папку NorthwindWebApiApp\Controllers. Добавьте асинхронные actions:
+
+* GetOrders - должен возвращать список всех заказов в кратком формате BriefOrderDescription.
+* GetOrder(int orderId) - должен возвращать подробную информацию о заказе с указанным orderId в полном формате FullOrderDescription.
+
+Список endpoins, глаголов и статусов приведен в таблице:
+
+| Endpoint             | Http Verb | Status Codes |
+| -------------------- | --------- | ------------ |
+| /api/orders          | GET       | 200, 500     |
+| /api/orders/:orderId | GET       | 200, 500     |
+
+Пример кода:
+
+```cs
+[HttpGet]
+public async Task<ActionResult<IEnumerable<BriefOrderDescription>>> GetOrders()
+{
+	return Ok(await _orderService.GetOrdersAsync());
+}
+
+[HttpGet("{orderId}")]
+public async Task<ActionResult<FullOrderDescription>> GetOrder(int orderId)
+{
+	return Ok(await _orderService.GetOrderAsync(orderId));
+}
+```
 
 6. Зарегистрируйте сервис в [Startup.cs](northwind-basic-app/NorthwindWebApiApp/Startup.cs):
 

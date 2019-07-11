@@ -25,7 +25,7 @@ namespace NorthwindWebApiApp.Controllers
 		}
 
 		[HttpGet("{orderId}")]
-		public async Task<ActionResult<BriefOrderDescription>> GetOrder(int orderId)
+		public async Task<ActionResult<FullOrderDescription>> GetOrder(int orderId)
 		{
 			return Ok(await _orderService.GetOrderAsync(orderId));
 		}
