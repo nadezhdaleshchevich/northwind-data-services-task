@@ -12,5 +12,5 @@
 
 ## Задачи
 
-1. [Northwind OData Service](task-01-northwind-odata-service.md)
-2. [Northwind REST Service](task-02-northwind-rest-service.md)
+1. [Northwind OData Service](task01/readme.md)
+2. [Northwind REST Service](task02/readme.md)

@@ -1,6 +1,6 @@
 # Northwind Data Services
 
-## Задача 2 - Northwind RESTful Service
+## Задача 2 - Northwind Web App
 
 Цели:
 * Научиться создавать веб-приложения, используя ASP.NET Core.
@@ -12,7 +12,7 @@
 
 ### Создание базового приложения ASP.NET Core
 
-![Overview](images/task-02-basic-app.png)
+![Overview](../images/task-02-basic-app.png)
 
 | Endpoint             | Http Verb | Status Codes |
 | -------------------- | --------- | ------------ |
